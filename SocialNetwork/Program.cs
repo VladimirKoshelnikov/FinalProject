@@ -1,2 +1,19 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+
+namespace SocialNetwork
+{
+    class Program
+    {
+        
+        public void Registration()
+        {
+            Console.WriteLine("Введите имя:")
+
+        }
+
+        static void Main(string[] args)
+        {
+
+        }
+    }
+}
