@@ -20,7 +20,7 @@ namespace SocialNetwork.DAL.Repositories
         {
             return Execute(@"delete from messages
 
-                            where :id = id_p", new {id_p = messageid});
+                            where id = :id_p", new { id_p = messageid });
         }
 
         public IEnumerable<MessageEntity> FindByRecipientId(int recipientId)
