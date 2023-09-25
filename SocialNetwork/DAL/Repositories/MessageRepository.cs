@@ -18,17 +18,21 @@ namespace SocialNetwork.DAL.Repositories
 
         public int DeleteById(int messageid)
         {
-            throw new NotImplementedException();
+            return Execute(@"delete from messages
+
+                            where :id = id_p", new {id_p = messageid});
         }
 
         public IEnumerable<MessageEntity> FindByRecipientId(int recipientId)
         {
-            throw new NotImplementedException();
+            return Query<MessageEntity>(@"select * from messages
+                                        where recipient_id = :recipientId_p", new { recipientId_p = recipientId });
         }
 
         public IEnumerable<MessageEntity> FindBySenderId(int senderId)
         {
-            throw new NotImplementedException();
+            return Query<MessageEntity>(@"select * from messages
+                                        where sender_id = :senderId_p", new { senderId_p = senderId });
         }
       
     }
