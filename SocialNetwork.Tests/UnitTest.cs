@@ -1,4 +1,5 @@
-using SocialNetwork.Class;
+using SocialNetwork.DAL.Entities;
+using System.Reflection;
 
 namespace SocialNetwork.Tests
 {
@@ -12,7 +13,12 @@ namespace SocialNetwork.Tests
         [Test]
         public void TestUserClass()
         {
-            Assert.Pass(User.GetCorrectString("Èìÿ", User.CheckStringData));
+            UserEntity myUser = new UserEntity();
+            MethodInfo methodInfo = typeof(UserEntity).GetMethod("GetCorrectString", BindingFlags.NonPublic | BindingFlags.Instance);
+            object[] parameters = { "parameters here" };
+            //methodInfo.Invoke(objUnderTest, parameters);
+
+            //Assert.Pass(UserEntity.GetCorrectString("Èìÿ", UserEntity.CheckStringData));
             Assert.Pass();
         }
     }

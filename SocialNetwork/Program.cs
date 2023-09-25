@@ -7,7 +7,7 @@ namespace SocialNetwork
         
         public void Registration()
         {
-            Console.WriteLine("Введите имя:")
+            Console.WriteLine("Введите имя:");
 
         }
 

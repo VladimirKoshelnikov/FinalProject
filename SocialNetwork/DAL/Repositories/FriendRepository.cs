@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialNetwork.Interfaces
+namespace SocialNetwork.DAL.Repositories
 {
-    internal interface IUser
+    internal class FriendRepository
     {
-        public void GetNewUser();
     }
 }

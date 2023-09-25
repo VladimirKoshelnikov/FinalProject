@@ -1,5 +1,4 @@
-﻿using SocialNetwork.Interfaces;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,29 +6,29 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace SocialNetwork.Class
+namespace SocialNetwork.DAL.Entities
 {
-    public class User : IUser
+    public class UserEntity
     {
         public int id { get; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public string password { get; set; }
+        private string password { get; set; }
         public string email { get; set; }
 
         public delegate bool CheckData(string str);
-        public bool CheckStringData(string str) => String.IsNullOrEmpty(str);
-        public bool CheckEmailData(string str) => new EmailAddressAttribute().IsValid(str);
-        public bool CheckPasswordData(string str) => str.Length >= 8;
+        private bool CheckStringData(string str) => string.IsNullOrEmpty(str);
+        private bool CheckEmailData(string str) => !new EmailAddressAttribute().IsValid(str);
+        private bool CheckPasswordData(string str) => str.Length <= 8;
 
-        public string GetCorrectString(string question, CheckData checkData)
+        private string GetCorrectString(string question, CheckData checkData)
         {
             Console.WriteLine(question);
             string answer = Console.ReadLine();
 
             if (checkData(answer))
                 throw new ArgumentNullException();
-            
+
             return answer;
         }
 
