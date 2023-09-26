@@ -9,6 +9,8 @@ namespace SocialNetwork
 {
     class Program
     {
+       
+
         static void NavigationHelp()
         {
             Console.WriteLine();
@@ -19,9 +21,7 @@ namespace SocialNetwork
             Console.WriteLine("\tДля регистрации в системе введите \"Registration\"");
             Console.WriteLine("\tДля выхода из программы введите \"Exit\"");
             Console.WriteLine();
-
         }
-
         static void UserRegistrationHelp()
         {
             Console.WriteLine();
@@ -32,11 +32,7 @@ namespace SocialNetwork
             Console.WriteLine("\tЭлектронная почта - непустая строчка в формате \"example@mail.adress\"");
             Console.WriteLine("\tПароль - любая строка длиной не менее 8 символов");
             Console.WriteLine();
-
         }
-
-                
-
         static void LoginHelp()
         {
             Console.WriteLine();
@@ -45,10 +41,20 @@ namespace SocialNetwork
             Console.WriteLine("\tЭлектронная почта - ваш адрес электронной почты в формате \"example@mail.adress\"");
             Console.WriteLine("\tПароль - ваш пароль, непустая строка длиной не менее 8 символов");
             Console.WriteLine();
-
         }
-
-
+        static void SurfingNetworkHelp()
+        {
+            Console.WriteLine("Список доступных команд в панели информации социальной сети:");
+            Console.WriteLine();
+            Console.WriteLine("Помощь в использовании \"Help\"");
+            Console.WriteLine("Посмотреть информацию о моем профиле \"ShowMyInfo\"");
+            Console.WriteLine("редактировать мой профиль \"ChangeMyInfo\"");
+            Console.WriteLine("Добавить пользователя в друзья \"AddFriend\"");
+            Console.WriteLine("Удалить пользователя из друзей \"DeleteFriend\"");
+            Console.WriteLine("Посмотреть информацию о моем профиле \"ShowMyFriend\"");
+            Console.WriteLine("Написать сообщение \"WriteMessage\"");
+            Console.WriteLine("Выйти из аккаунта \"Logout\""); 
+        }
         static void Login()
         {
             LoginHelp();
@@ -91,9 +97,7 @@ namespace SocialNetwork
                 }
             }
             while (!AutorizationisFinished);
-            
         }
-
         static void Registration()
         {
             UserRegistrationHelp();
@@ -152,17 +156,42 @@ namespace SocialNetwork
                     }
                 }
             }
-
             while (!RegistrationIsFinished);
-
-            
-
         }
-
-    
-
-        static void Network()
+        static void ShowMyInfo() { 
+            
+        }
+        static void ShowMyFriendInfo() { }
+        static void ChangeMyInfo() { }
+        static void AddFriend() { }
+        static void DeleteFriend() { }
+        static void WriteMessage() { }
+        static void LogOut() { }
+        static void SurfOnNetwork(UserService userService, UserAuthentificationData userAuthentificationData)
         {
+            Console.WriteLine("Добро пожаловать в социальную сеть имени меня");
+            SurfingNetworkHelp();
+
+            switch (Console.ReadLine().ToUpper())
+            {
+                case "HELP":
+                    SurfingNetworkHelp();
+                    break;
+                case "SHOWMYINFO":
+                    ShowMyInfo();
+                    break;
+                case "CHANGEMYINFO":
+                    break;
+
+                case "ADDFRIEND":
+                    break;
+                case "DELETEFRIEND":
+                    break;
+                case "WRITEMESSAGE":
+                    break;
+                case "LOGOUT":
+                    break;
+            }
             Console.WriteLine("Для входа введите \"Login\"");
         }
 
