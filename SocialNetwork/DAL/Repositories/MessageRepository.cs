@@ -26,13 +26,13 @@ namespace SocialNetwork.DAL.Repositories
         public IEnumerable<MessageEntity> FindByRecipientId(int recipientId)
         {
             return Query<MessageEntity>(@"select * from messages
-                                        where recipient_id = :recipientId_p", new { recipientId_p = recipientId });
+                                        where recipientId = :recipientId_p", new { recipientId_p = recipientId });
         }
 
         public IEnumerable<MessageEntity> FindBySenderId(int senderId)
         {
             return Query<MessageEntity>(@"select * from messages
-                                        where sender_id = :senderId_p", new { senderId_p = senderId });
+                                        where senderId = :senderId_p", new { senderId_p = senderId });
         }
       
     }

@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Tests\" />
-    <Folder Include="BLL\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +19,9 @@
   <ItemGroup>
     <None Update="DAL\DB\SocialNetworkDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SocialNetworkDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
