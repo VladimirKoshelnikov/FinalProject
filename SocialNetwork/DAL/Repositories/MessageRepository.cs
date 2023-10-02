@@ -9,11 +9,11 @@ namespace SocialNetwork.DAL.Repositories
 {
     public class MessageRepository: BaseRepository, IMessageRepository
     {
-        public int Create(MessageEntity messageEntity)
+        public int SendMessage(MessageEntity messageEntity)
         {
-            return Execute(@"insert into messages(content, senderid, recipientid)
+            return Execute(@"insert into messages(content, senderid, recipientid, datetime)
 
-                            values(:content, :sender_id, :recipient_id)", messageEntity);
+                            values(:content, :sender_id, :recipient_id, :datetime.Tick)", messageEntity);
         }
 
         public int DeleteById(int messageid)
@@ -23,25 +23,42 @@ namespace SocialNetwork.DAL.Repositories
                             where id = :id_p", new { id_p = messageid });
         }
 
-        public IEnumerable<MessageEntity> FindByRecipientId(int recipientId)
+        public IEnumerable<MessageEntity> GetIncomingMessagesByUserId(int recipientId)
         {
             return Query<MessageEntity>(@"select * from messages
                                         where recipientId = :recipientId_p", new { recipientId_p = recipientId });
         }
 
-        public IEnumerable<MessageEntity> FindBySenderId(int senderId)
+        public IEnumerable<MessageEntity> GetOutcomingMessagesByUserId(int senderId)
         {
             return Query<MessageEntity>(@"select * from messages
                                         where senderId = :senderId_p", new { senderId_p = senderId });
         }
-      
+
+        public IEnumerable<MessageEntity> GetFullConversation(int senderId, int recipientId)
+        {
+            List<MessageEntity> MessagesFromUser = Query<MessageEntity>(@"select * from messages
+                                        where senderId = :senderId_p and recipientId = :recipientId_p", new { senderId_p = senderId, recipientId_p = recipientId });
+            
+            List<MessageEntity> MessagesToUser = Query<MessageEntity>(@"select * from messages
+                                        where senderId = :recipientId_p and recipientId = :senderId_p", new { senderId_p = senderId, recipientId_p = recipientId });
+
+            var FullConversation = MessagesFromUser.Union(MessagesToUser).OrderByDescending(m =>m.datetime);
+
+            return FullConversation;
+        }
+
     }
+
+
     public interface IMessageRepository
     {
-        int Create(MessageEntity messageEntity);
-        IEnumerable<MessageEntity> FindBySenderId(int senderId);
-        IEnumerable<MessageEntity> FindByRecipientId(int recipientId);
+        public IEnumerable<MessageEntity> GetIncomingMessagesByUserId (int senderId);
+        public IEnumerable<MessageEntity> GetOutcomingMessagesByUserId(int recipientId);
 
-        int DeleteById(int messageid);
+        public IEnumerable<MessageEntity> GetFullConversation(int senderId, int recipientId);
+
+        public int SendMessage(MessageEntity messageEntity);
+        public int DeleteById(int messageid);
     }
 }

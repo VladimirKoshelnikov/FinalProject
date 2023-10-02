@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SocialNetwork.BLL.Models;
 
 namespace SocialNetwork.DAL.Entities
 {
@@ -16,8 +16,8 @@ namespace SocialNetwork.DAL.Entities
         public string password { get; set; }
         public string email { get; set; }
         public string photo { get; set; }
-        public string favourite_movie { get; set; }
-        public string favourite_book {  get; set; }
+        public string favouriteMovie { get; set; }
+        public string favouriteBook {  get; set; }
 
     }
 }

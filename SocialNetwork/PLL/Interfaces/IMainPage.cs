@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.Interfaces
 {
-    internal interface IFriendPage
+    public interface IMainPage
     {
         public void Show(User user);
-        public void AddFriend();
-        public void GetMyFriends();
-        public void DeleteFriend();
-
+        public void ShowMyInfo();
+        public void Logout();
     }
 }

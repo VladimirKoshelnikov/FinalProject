@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SocialNetwork.PLL.Interfaces;
 
-namespace SocialNetwork.PLL.ConsolePresentation
+namespace SocialNetwork.PLL.Interfaces
 {
-    public class Helper : IHelper
+    public interface IRegistrationPage
     {
+        public void Show();
     }
 }

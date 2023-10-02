@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.Interfaces
 {
-    internal interface IAutorizationPage
+    internal interface ILoginPage
     {
+        public void Show();
+
     }
 }

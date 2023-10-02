@@ -8,5 +8,6 @@ namespace SocialNetwork.PLL.Interfaces
 {
     public interface IHelper
     {
+        void Help();
     }
 }

@@ -18,6 +18,7 @@ namespace SocialNetwork.DAL.Repositories
                 values
                 (:firstName,:lastName,:password,:email)", userEntity);
         }
+        
         public IEnumerable<UserEntity> FindAll()
         {
             return Query<UserEntity>("select * from users");
@@ -29,10 +30,12 @@ namespace SocialNetwork.DAL.Repositories
                 where 
                 email = :email_p", new {email_p = email});
         }
+
         public UserEntity FindById(int id)
         {
             return QueryFirstOrDefault<UserEntity>(@"select * from users where id = :id_p", new { id_p = id });
         }
+
         public int DeleteById(int id)
         {
             return Execute(@"delete from users 

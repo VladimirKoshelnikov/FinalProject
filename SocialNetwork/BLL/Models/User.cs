@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.BLL.Models
 {
+
     public class User
     {
         public int Id { get; }
@@ -17,6 +18,11 @@ namespace SocialNetwork.BLL.Models
         public string FavouriteMovie { get; set; }
         public string FavouriteBook { get; set; }
 
+        public IEnumerable<Message> IncomingMessages { get; }
+        public IEnumerable<Message> OutgoingMessages { get; }
+
+        public IEnumerable<User> Friends { get; }
+
         public User(
             int id,
             string firstName,
@@ -25,7 +31,8 @@ namespace SocialNetwork.BLL.Models
             string email,
             string photo,
             string favouriteMovie,
-            string favouriteBook)
+            string favouriteBook
+            )
         {
             this.Id = id;
             this.FirstName = firstName;
