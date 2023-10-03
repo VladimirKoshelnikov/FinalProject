@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Folder
+SocialNetwork.Tests/
+/SocialNetwork.Tests/SocialNetwork.Tests.csproj
