@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.Interfaces
 {
-    internal interface ILoginPage
+    public interface IWelcomeView
     {
         public void Show();
-
+        public void Exit();
     }
 }

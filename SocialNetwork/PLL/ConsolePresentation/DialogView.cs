@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.ConsolePresentation
 {
-    public class DialogPage : IHelper, IDialogPage
+    public class DialogView : IHelper, IDialogView
     {
         User user;
         User friend;
@@ -84,7 +84,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
 
         }
 
-        public DialogPage(MessageService _messageService)
+        public DialogView(MessageService _messageService)
         {
             messageService = _messageService;
         }

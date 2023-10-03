@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.ConsolePresentation
 {
-    public class WelcomePage : IHelper, IWelcomePage
+    public class WelcomeView : IHelper, IWelcomeView
     {
         public void Exit()
         {
@@ -42,10 +42,10 @@ namespace SocialNetwork.PLL.ConsolePresentation
                         Help();
                         break;
                     case "LOGIN":
-                        Program.loginPage.Show();
+                        Program.loginView.Show();
                         break;
                     case "REGISTRATION":
-                        Program.registrationPage.Show();
+                        Program.registrationView.Show();
                         break;
                     case "EXIT":
                         Console.WriteLine("До свидания. Ждем вас снова");

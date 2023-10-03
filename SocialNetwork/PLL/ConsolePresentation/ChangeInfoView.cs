@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.ConsolePresentation
 {
-    public class ChangeInfoPage : IHelper, IChangeInfoPage
+    public class ChangeInfoView : IHelper, IChangeInfoView
     {
         private User changedUser;
         private User sourceUser;
@@ -122,7 +122,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
             }
         }
 
-        public ChangeInfoPage(UserService _userService)
+        public ChangeInfoView(UserService _userService)
         {
             userService = _userService;
         }

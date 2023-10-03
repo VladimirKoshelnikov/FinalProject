@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.Interfaces
 {
-    internal interface IConversationPage
+    internal interface IConversationView
     {
         public void Show(User user);
         public void ShowAllDialogs();

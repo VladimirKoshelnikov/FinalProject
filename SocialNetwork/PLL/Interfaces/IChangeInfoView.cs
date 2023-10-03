@@ -7,7 +7,7 @@ using SocialNetwork.BLL.Models;
 
 namespace SocialNetwork.PLL.Interfaces
 {
-    public interface IChangeInfoPage
+    public interface IChangeInfoView
     {
         public void Show(ref User user);
         public void ChangeParameters();

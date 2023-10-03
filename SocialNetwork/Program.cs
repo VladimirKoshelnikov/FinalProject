@@ -11,14 +11,14 @@ namespace SocialNetwork
 {
     public class Program
     {
-        public static WelcomePage welcomePage;
-        public static LoginPage loginPage;
-        public static RegistrationPage registrationPage;
-        public static MainPage mainPage;
-        public static FriendPage friendPage;
-        public static ChangeInfoPage changeInfoPage;
-        public static ConversationPage conversationPage;
-        public static DialogPage dialogPage;
+        public static WelcomeView welcomeView;
+        public static LoginView loginView;
+        public static RegistrationView registrationView;
+        public static MainView mainView;
+        public static FriendView friendView;
+        public static ChangeInfoView changeInfoView;
+        public static ConversationView conversationView;
+        public static DialogView dialogView;
 
         public static UserService userService;
         public static MessageService messageService;
@@ -32,23 +32,16 @@ namespace SocialNetwork
 
 
             Console.WriteLine("Добро пожаловать в социальную сеть.");
-            welcomePage = new WelcomePage();
-            loginPage = new LoginPage(userService);
-            registrationPage = new RegistrationPage(userService);
-            mainPage = new MainPage(userService);
-            friendPage = new FriendPage(userService, friendService);
-            conversationPage = new ConversationPage(messageService, userService, friendService);
-            changeInfoPage = new ChangeInfoPage(userService);
-            dialogPage = new DialogPage(messageService);
+            welcomeView = new WelcomeView();
+            loginView = new LoginView(userService);
+            registrationView = new RegistrationView(userService);
+            mainView = new MainView(userService);
+            friendView = new FriendView(userService, friendService);
+            conversationView = new ConversationView(messageService, userService, friendService);
+            changeInfoView = new ChangeInfoView(userService);
+            dialogView = new DialogView(messageService);
 
-            UserAddingFriendData userAddingFriendData = new UserAddingFriendData
-            {
-                UserId = 1,
-                FriendEmail = "Jack@Daniels.com"
-            };
-
-            friendService.IsFriendshipExist(userAddingFriendData);
-            welcomePage.Show();
+            welcomeView.Show();
 
 
         }

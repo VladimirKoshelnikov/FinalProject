@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.ConsolePresentation
 {
-    public class FriendPage : IHelper, IFriendPage
+    public class FriendView : IHelper, IFriendView
 
     {
         private UserService userService;
@@ -111,7 +111,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
             Console.WriteLine($"Пользователь с адресом {email} удален из списка ваших друзей");
            
         }
-        public FriendPage(UserService _userService, FriendService _friendService) 
+        public FriendView(UserService _userService, FriendService _friendService) 
         {
             userService = _userService;
             friendService = _friendService; 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.ConsolePresentation
 {
-    public class RegistrationPage : IHelper
+    public class RegistrationView : IHelper
     {
         private UserService userService;
 
@@ -28,7 +28,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
         
 
 
-        public RegistrationPage(UserService _userService)
+        public RegistrationView(UserService _userService)
         {
             userService = _userService;
         }

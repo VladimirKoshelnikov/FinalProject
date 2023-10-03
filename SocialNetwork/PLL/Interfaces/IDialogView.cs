@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.Interfaces
 {
-    public interface IDialogPage
+    public interface IDialogView
     {
         public void Show(User user, User friend);
         public void SendMessage();

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.ConsolePresentation
 {
-    public class LoginPage : IHelper , ILoginPage
+    public class LoginView : IHelper , ILoginView
     {
         User user;
         UserService userService;
@@ -28,7 +28,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
             Console.WriteLine();
         }
 
-        public LoginPage(UserService _userService)
+        public LoginView(UserService _userService)
         {
             userService = _userService;
         }
@@ -81,7 +81,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
 
             if (AutorizationIsSuccessfull)
             {
-                Program.mainPage.Show(user);
+                Program.mainView.Show(user);
             }
         }
     }

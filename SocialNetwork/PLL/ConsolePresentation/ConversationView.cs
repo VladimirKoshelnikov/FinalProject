@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.ConsolePresentation
 {
-    public class ConversationPage : IHelper, IConversationPage
+    public class ConversationView : IHelper, IConversationView
     {
         private MessageService messageService;
         private UserService userService;
@@ -67,7 +67,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
             {
                 string friendEmail = Console.ReadLine();
                 User friend = userService.FindByEmail(friendEmail);
-                Program.dialogPage.Show(user, friend);
+                Program.dialogView.Show(user, friend);
             }
             catch(Exception ex)
             {
@@ -95,7 +95,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
             Console.WriteLine();
         }
 
-        public ConversationPage(MessageService _messageSevice, UserService _userService, FriendService _friendService)
+        public ConversationView(MessageService _messageSevice, UserService _userService, FriendService _friendService)
         {
             messageService = _messageSevice;
             userService = _userService;

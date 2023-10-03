@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PLL.ConsolePresentation
 {
-    public class MainPage : IHelper , IMainPage
+    public class MainView : IHelper , IMainView
     {
         public UserService userService;
         public MessageService messageService;
@@ -50,7 +50,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
             user = null;
         }
         
-        public MainPage(UserService _userService)
+        public MainView(UserService _userService)
         {
             userService = _userService;
         }
@@ -73,13 +73,13 @@ namespace SocialNetwork.PLL.ConsolePresentation
                         ShowMyInfo();
                         break;
                     case "CHANGEMYINFO":
-                        Program.changeInfoPage.Show(ref user);
+                        Program.changeInfoView.Show(ref user);
                         break;
                     case "MYFRIENDS":
-                        Program.friendPage.Show(user);
+                        Program.friendView.Show(user);
                         break;
                     case "MYCONVERSATIONS":
-                        Program.conversationPage.Show(user);
+                        Program.conversationView.Show(user);
                         break;
                     case "LOGOUT":
                         Logout();
