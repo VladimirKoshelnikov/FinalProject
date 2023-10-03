@@ -26,7 +26,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
             Console.WriteLine("\tПосмотреть информацию о моем профиле \"ShowMyInfo\"");
             Console.WriteLine("\tРедактировать мой профиль \"ChangeMyInfo\"");
             Console.WriteLine("\tПерейти на вкладку Мои друзья \"MyFriends\"");
-            Console.WriteLine("\tПерейти на вкладку Диалоги \"MyConverstaions\"");
+            Console.WriteLine("\tПерейти на вкладку Диалоги \"MyConversations\"");
             Console.WriteLine("\tВыйти из аккаунта \"Logout\"");
             Console.WriteLine();
         }

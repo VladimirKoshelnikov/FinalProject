@@ -10,6 +10,6 @@ namespace SocialNetwork.PLL.Interfaces
     public interface IDialogPage
     {
         public void Show(User user, User friend);
-        public void SendMessage(string message);
+        public void SendMessage();
     }
 }

@@ -13,7 +13,7 @@ namespace SocialNetwork.DAL.Repositories
         {
             return Execute(@"insert into messages(content, senderid, recipientid, datetime)
 
-                            values(:content, :sender_id, :recipient_id, :datetime.Tick)", messageEntity);
+                            values(:content, :senderId, :recipientId, :datetime)", messageEntity);
         }
 
         public int DeleteById(int messageid)
@@ -43,7 +43,7 @@ namespace SocialNetwork.DAL.Repositories
             List<MessageEntity> MessagesToUser = Query<MessageEntity>(@"select * from messages
                                         where senderId = :recipientId_p and recipientId = :senderId_p", new { senderId_p = senderId, recipientId_p = recipientId });
 
-            var FullConversation = MessagesFromUser.Union(MessagesToUser).OrderByDescending(m =>m.datetime);
+            var FullConversation = MessagesFromUser.Union(MessagesToUser).OrderBy(m =>m.datetime);
 
             return FullConversation;
         }

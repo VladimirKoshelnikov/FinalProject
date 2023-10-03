@@ -14,6 +14,7 @@ namespace SocialNetwork.Tests
         public void TestUserClass()
         {
             UserEntity myUser = new UserEntity();
+
             MethodInfo methodInfo = typeof(UserEntity).GetMethod("GetCorrectString", BindingFlags.NonPublic | BindingFlags.Instance);
             object[] parameters = { "parameters here" };
             //methodInfo.Invoke(objUnderTest, parameters);

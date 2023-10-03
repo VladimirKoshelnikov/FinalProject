@@ -23,6 +23,7 @@ namespace SocialNetwork.DAL.Repositories
         {
             return Query<UserEntity>("select * from users");
         }
+        
         public UserEntity FindByEmail(string email)
         {
             return QueryFirstOrDefault<UserEntity>(
@@ -46,7 +47,7 @@ namespace SocialNetwork.DAL.Repositories
         public int Update(UserEntity userEntity)
         {
             return Execute(@"update users set firstname = :firstName, lastname = :lastName, password = :password, email = :email,
-                             photo = :photo, favourite_movie = :favourite_movie, favourite_book = :favourite_book where id = :id", userEntity);
+                             photo = :photo, favourite_movie = :favouriteMovie , favourite_book = :favouriteBook where id = :id", userEntity);
         }
     }
     public interface IUserRepository

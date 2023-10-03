@@ -17,13 +17,13 @@ namespace SocialNetwork.BLL.Models
 
 
         public Message(
-            int id,
+            
             string content,
             string senderEmail,
             string recipientEmail,
             long datetime) 
         {
-            Id = id;
+
             Content = content;
             SenderEmail = senderEmail;
             RecipientEmail = recipientEmail;

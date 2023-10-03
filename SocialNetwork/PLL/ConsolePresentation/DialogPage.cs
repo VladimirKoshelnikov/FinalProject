@@ -16,34 +16,72 @@ namespace SocialNetwork.PLL.ConsolePresentation
         MessageService messageService;
 
 
-        public void SendMessage(string content)
+        public void SendMessage()
         {
-            MessageSendingData messageSendingData = new MessageSendingData();
-            messageSendingData.Content = content;
-            messageSendingData.SenderId = user.Id;
-            messageSendingData.RecipientEmail = friend.Email;
+            Console.WriteLine("Введите текст сообщения");
+            string content = Console.ReadLine();
+            Message message = new Message(content, user.Email, friend.Email, DateTime.Now.Ticks);
+
+            messageService.SendMessage(message);
+            Console.WriteLine("Сообщение отправлено");
         }
+
+        public void GetFullDialog()
+        {
+            var dialog = messageService.GetFullConversation(user.Id, friend.Id);
+
+            foreach (Message message in dialog)
+            {
+                DateTime dateTime = new DateTime(message.DateTimeSend);
+                Console.WriteLine($"Сообщение от {message.SenderEmail} к {message.RecipientEmail} от {dateTime.ToLongDateString()} {dateTime.ToLongTimeString()}");
+                Console.WriteLine($"\t {message.Content}");
+                Console.WriteLine();
+            }
+
+        }
+
 
         public void Show(User _user, User _friend)
         {
             user = _user;
             friend = _friend;
 
-            var dialog = messageService.GetFullConversation(user.Id, friend.Id);
+            Help();
 
-            foreach (Message message in dialog)
+            while (true)
             {
-                DateTime dateTime = new DateTime();
-                dateTime.AddTicks(message.DateTimeSend);
-
-                Console.WriteLine($"Сообщение от {message.SenderEmail} к {message.RecipientEmail} от {dateTime.ToLongDateString}");
+                switch (Console.ReadLine().ToUpper())
+                {
+                    case "HELP":
+                        Help();
+                        break;
+                    case "GETFULLDIALOG":
+                        GetFullDialog();
+                        break;
+                    case "SENDMESSAGE":
+                        SendMessage();
+                        break;
+                    case "UNDO":
+                        return;
+                    default:
+                        Console.WriteLine("Неизвестная команда");
+                        break;
+                }
             }
-
         }
 
         public void Help()
         {
-            throw new NotImplementedException();
+            Console.WriteLine();
+            Console.WriteLine($"Вы назодитесь в окне диалога с вашим другом {friend.LastName} {friend.FirstName}") ;
+            Console.WriteLine();
+            Console.WriteLine("\tПомощь в использовании \"Help\"");
+            Console.WriteLine("\tПосмотреть всю переписку \"GetFullDialog\"");
+            Console.WriteLine("\tОтправить сообщение \"SendMessage\"");
+
+            Console.WriteLine("\tВернуться на главную \"Undo\"");
+            Console.WriteLine();
+
         }
 
         public DialogPage(MessageService _messageService)

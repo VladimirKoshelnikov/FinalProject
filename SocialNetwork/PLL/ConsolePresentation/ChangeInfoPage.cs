@@ -113,6 +113,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
                         break;
                     case "STOPEDIT":
                         changingIsFinished = true;
+                        Help();
                         break;
                     default:
                         Console.WriteLine("Неизвестный параметр");
@@ -135,6 +136,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
             Console.WriteLine();
             while (true)
             {
+                Help();
                 switch (Console.ReadLine().ToUpper())
                 {
                     case "CHANGEPARAMETERS":

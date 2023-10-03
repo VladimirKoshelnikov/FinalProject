@@ -19,6 +19,29 @@ namespace SocialNetwork.PLL.ConsolePresentation
         public void Show(User _user)
         {
             user = _user;
+
+            Help();
+
+            while (true)
+            {
+                switch (Console.ReadLine().ToUpper())
+                {
+                    case "HELP":
+                        Help();
+                        break;
+                    case "SHOWDIALOGS":
+                        ShowAllDialogs();
+                        break;
+                    case "OPENDIALOG":
+                        OpenDialog();
+                        break;
+                    case "UNDO":
+                        return;
+                    default:
+                        Console.WriteLine("Неизвестная команда");
+                        break;
+                }
+            }
         }
         public void Help()
         {
@@ -26,8 +49,8 @@ namespace SocialNetwork.PLL.ConsolePresentation
             Console.WriteLine("Список доступных команд в панели информации социальной сети:");
             Console.WriteLine();
             Console.WriteLine("\tПомощь в использовании \"Help\"");
-            Console.WriteLine("\tПосмотреть информацию о моем профиле \"ShowDialogs\"");
-            Console.WriteLine("\tРедактировать мой профиль \"OpenDialog\"");
+            Console.WriteLine("\tПосмотреть активные переписки\"ShowDialogs\"");
+            Console.WriteLine("\tОткрыть переписку с пользователем \"OpenDialog\"");
 
             Console.WriteLine("\tВернуться на главную \"Undo\"");
             Console.WriteLine();
@@ -35,18 +58,20 @@ namespace SocialNetwork.PLL.ConsolePresentation
 
         }
 
-        public void OpenDialog(string friendEmail)
+        public void OpenDialog()
         {
-            int friendId = userService.GetUserIdByEmail(friendEmail);
 
-            var dialog = messageService.GetFullConversation(user.Id, friendId);
             
-            foreach (Message message in dialog)
+            Console.WriteLine("Введите почту пользователя");
+            try
             {
-                DateTime dateTime = new DateTime();
-                dateTime.AddTicks(message.DateTimeSend);
-
-                Console.WriteLine($"Сообщение от {message.SenderEmail} к {message.RecipientEmail} от {dateTime.ToLongDateString}");
+                string friendEmail = Console.ReadLine();
+                User friend = userService.FindByEmail(friendEmail);
+                Program.dialogPage.Show(user, friend);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Ошибка в поиске диалога пользователем");
             }
 
         }
@@ -54,13 +79,20 @@ namespace SocialNetwork.PLL.ConsolePresentation
         public void ShowAllDialogs()
         { 
             var dialogsEmail = messageService.GetIncomingMessagesByUserId(user.Id).Select(m => m.SenderEmail).Distinct().ToList();
-            Console.WriteLine("Список адресов с которыми у вас есть диалог:");
-            foreach(string email in dialogsEmail)
-            {
-                Console.WriteLine(email);
-            }
             
-        
+            if (dialogsEmail.Count == 0)
+            {
+                Console.WriteLine("У вас нет активных переписок");
+            }
+            else
+            {
+                Console.WriteLine("Список адресов с которыми у вас есть диалог:");
+                foreach (string email in dialogsEmail)
+                {
+                    Console.WriteLine(email);
+                }
+            }
+            Console.WriteLine();
         }
 
         public ConversationPage(MessageService _messageSevice, UserService _userService, FriendService _friendService)

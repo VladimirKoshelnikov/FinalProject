@@ -11,6 +11,6 @@ namespace SocialNetwork.PLL.Interfaces
     {
         public void Show(User user);
         public void ShowAllDialogs();
-        public void OpenDialog(string friendEmail);
+        public void OpenDialog();
     }
 }

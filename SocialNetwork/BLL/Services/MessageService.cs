@@ -1,4 +1,5 @@
-﻿using SocialNetwork.BLL.Models;
+﻿using SocialNetwork.BLL.Exceptions;
+using SocialNetwork.BLL.Models;
 using SocialNetwork.DAL.Entities;
 using SocialNetwork.DAL.Repositories;
 using System;
@@ -15,7 +16,7 @@ namespace SocialNetwork.BLL.Services
         public IMessageRepository messageRepository;
         public UserService userService;
 
-        public bool CheckLengthMessage(Message message)
+        public bool IsLengthMoreThanLimit(Message message)
         {
             return (message.Content.Length < 5000);
         }
@@ -35,7 +36,7 @@ namespace SocialNetwork.BLL.Services
                 var sender = userService.FindById(m.senderId);
                 var recipient= userService.FindById(m.recipientId);
 
-                messages.Add(new Message(m.id, m.content, sender.Email, recipient.Email, m.datetime));
+                messages.Add(new Message(m.content, sender.Email, recipient.Email, m.datetime));
             });
             return messages;
         }
@@ -48,7 +49,7 @@ namespace SocialNetwork.BLL.Services
             {
                 var sender = userService.FindById(m.senderId);
                 var recipient = userService.FindById(m.recipientId);
-                messages.Add(new Message(m.id, m.content, sender.Email, recipient.Email, m.datetime));
+                messages.Add(new Message( m.content, sender.Email, recipient.Email, m.datetime));
             });
             return messages;
         }
@@ -62,7 +63,7 @@ namespace SocialNetwork.BLL.Services
                 var sender = userService.FindById(m.senderId);
                 var recipient = userService.FindById(m.recipientId);
 
-                messages.Add(new Message(m.id, m.content, sender.Email, recipient.Email, m.datetime));
+                messages.Add(new Message( m.content, sender.Email, recipient.Email, m.datetime));
             });
             return messages;
         }
@@ -70,13 +71,20 @@ namespace SocialNetwork.BLL.Services
 
         public void SendMessage(Message message)
         {
-
+            if (!IsLengthMoreThanLimit(message))
+            {
+                throw new ArgumentException();
+            }
+            if (!isReceiverExist(message.RecipientEmail))
+            {
+                throw new UserNotFoundException();
+            }
             MessageEntity messageEntity = new MessageEntity()
             {
                 senderId = userService.GetUserIdByEmail(message.SenderEmail),
                 recipientId = userService.GetUserIdByEmail(message.RecipientEmail),
                 content = message.Content,
-                datetime = DateTime.Now.Ticks
+                datetime = message.DateTimeSend
             };
 
             messageRepository.SendMessage(messageEntity);
@@ -84,7 +92,8 @@ namespace SocialNetwork.BLL.Services
 
         public Message ConstructMessageModel(MessageEntity messageEntity)
         {
-             return new Message(messageEntity.id, 
+            
+             return new Message(
                                 messageEntity.content,
                                 userService.GetUserEmailById(messageEntity.senderId),
                                 userService.GetUserEmailById(messageEntity.recipientId),

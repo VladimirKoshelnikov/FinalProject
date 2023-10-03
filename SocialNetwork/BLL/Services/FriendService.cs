@@ -47,7 +47,8 @@ namespace SocialNetwork.BLL.Services
 
         public FriendService(UserService _userService)
         {
-
+            friendRepository = new FriendRepository();
+            userService = _userService;
         }
 
     }
