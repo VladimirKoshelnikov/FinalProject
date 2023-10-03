@@ -107,7 +107,7 @@ namespace SocialNetwork.PLL.ConsolePresentation
             Console.WriteLine("Введите Email будущего бывшего друга");
             string email = Console.ReadLine();
 
-            friendService.DeleteFriendByEmail(email);
+            friendService.DeleteFriendByEmail(user.Id, email);
             Console.WriteLine($"Пользователь с адресом {email} удален из списка ваших друзей");
            
         }

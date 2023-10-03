@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.BLL.Exceptions
 {
-    public class PasswordIsIncorrectException: Exception
+    internal class FriendshipIsNotFoundException : Exception
     {
     }
 }

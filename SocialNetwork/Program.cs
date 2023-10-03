@@ -41,6 +41,13 @@ namespace SocialNetwork
             changeInfoPage = new ChangeInfoPage(userService);
             dialogPage = new DialogPage(messageService);
 
+            UserAddingFriendData userAddingFriendData = new UserAddingFriendData
+            {
+                UserId = 1,
+                FriendEmail = "Jack@Daniels.com"
+            };
+
+            friendService.IsFriendshipExist(userAddingFriendData);
             welcomePage.Show();
 
 
